@@ -1,21 +1,30 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import './App.css';
 import Login from './components/Login';
-import CallTestPage from './components/CallTestPage';
+//import CallTestPage from './components/CallTestPage';
 import ListByCustomId from './components/ListByCustomId';
 import ListByObjectType from './components/ListByObjectType';
 import './main.css';
 
 function App() {
 
-	const [token, setToken] = useState(localStorage.getItem("token"));
+
+	const [token, setToken] = useState(sessionStorage.getItem("localToken") || '');	
+
+	useEffect ( () => {
+		console.log("use effect");
+		console.log(token);
+		sessionStorage.setItem("localToken",token);
+
+	}, [token]);
 
 	if (!token) {
 		return <Login setToken = {setToken}/>
-	} 
+	};
+	
 	
 	return (
 		<>
@@ -33,10 +42,10 @@ function App() {
 	      			<BrowserRouter>
         				<Switch>
           					<Route path="/customid">
-								<ListByCustomId setToken = {setToken} token = {token["token"]}/>
+								<ListByCustomId setToken = {setToken} token = {token}/>
 							</Route>	
 							<Route path="/objecttype">
-								<ListByObjectType token = {token["token"]}/>
+								<ListByObjectType setToken = {setToken} token = {token}/>
 							</Route>
 						</Switch>
 					</BrowserRouter>
@@ -51,28 +60,6 @@ function App() {
 		</>
 	);
 
-/*
-	return (
-		<>
-		<div className="main-header">
-		<h2> hello there </h2>
-		</div>
-		<div className="outer-wrapper">
-			<div className="container">
-		  		<div className="item">
-                    <p>Left</p>
-                    <p> a </p>
-                    <p> b </p>
-                </div>
-		  		<div className="item">
-                    <p>Right</p>
-                    <ListByCustomId token = {JSON.stringify(token)}/>
-                </div>
-			</div>
-		</div>
-	</>
-  );
-*/
 }
 
 export default App;

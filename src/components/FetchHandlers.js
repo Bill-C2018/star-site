@@ -20,7 +20,7 @@ export async function postCall(data,uri,isJson)  {
 	};
 	const response = await fetch(uri, requestOptions);
 	if(response.status !== 200) {
-		throw Error("my error");
+		throw Error(response.status);
 	}
 	return response.json();
 }
@@ -41,7 +41,7 @@ export const getCallWithToken = async (token,uri) => {
 	const response = await fetch(uri,requestOptions);
 	if(response.status !== 200) {
 		console.log(response.status)
-		const text = "my error " + response.status;
+		const text = response.status;
 		throw Error(text);
 	}
 	return response.json();

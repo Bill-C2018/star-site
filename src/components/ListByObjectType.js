@@ -19,9 +19,18 @@ const ListByObjectType = (props) => {
 	const submitHandler = async (event) => {
 		event.preventDefault();
 		console.log("in submit handler -> " + props.token)
-		const response = await getCallWithToken(props.token,getByObjectIdUri);
-		console.log("response = " + response);
-		setResponse(response['objects']);
+		try {
+			const response = await getCallWithToken(props.token,getByObjectIdUri);
+			console.log("response = " + response);
+			setResponse(response['objects']);
+		} catch (error)	{
+
+			if (error.message === "403") {
+				console.log("clear token");
+				localStorage.clear();
+				props.setToken('');
+			}
+		}
 	}
 	
 	return (

@@ -24,8 +24,13 @@ const ListByCustomId = (props) => {
 			console.log("response = " + response);
 			setResponse(response['objects']);
 		} catch (error)	{
-			localStorage.clear();
-			props.setToken('');
+
+			if (error.message === "403") {
+				console.log("clear token");
+				localStorage.clear();
+				props.setToken('');
+			}
+
 		}
 	}
 	
