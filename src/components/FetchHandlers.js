@@ -1,8 +1,8 @@
 
 	
-export async function postCall(data,uri,isJson)  {
+export const postCall = async (data,uri,token,isJson) => {
 	
-	const token = "";
+
 	let s2 = '';
 	if( isJson) {
 		console.log("is json == true");

@@ -17,7 +17,7 @@ const Login = (props) => {
         };	
 
 		try {
-			const token = await postCall(s,'http://localhost:8081/user/login','TRUE');
+			const token = await postCall(s,'http://localhost:8081/user/login','','TRUE');
 			console.log(token);
 			console.log("token == " + token);
 			props.setToken(token['token']);

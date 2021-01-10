@@ -7,6 +7,7 @@ import Login from './components/Login';
 //import CallTestPage from './components/CallTestPage';
 import ListByCustomId from './components/ListByCustomId';
 import ListByObjectType from './components/ListByObjectType';
+import AddCustomObject from './components/AddCustomObject';
 import './main.css';
 
 function App() {
@@ -35,7 +36,8 @@ function App() {
 			<div className="row">
 			  <div className="column-side" style={{backgroundColor: "#aaa"}}>
 				<p><a style={{marginLeft: '10%'}} href="/customid">Custom ID</a></p>
-				<p><a style={{marginLeft: '10%'}} href="/objecttype">Object type</a></p>
+				<p><a style={{marginLeft: '10%'}} href="/objecttype">Object Type</a></p>
+				<p><a style={{marginLeft: '10%'}} href="/addcustomobject">Add Custom Object</a></p>		  
 			  </div>
 			  
 			  <div className="column-middle" style={{backgroundColor: "#bbb"}}>
@@ -46,6 +48,9 @@ function App() {
 							</Route>	
 							<Route path="/objecttype">
 								<ListByObjectType setToken = {setToken} token = {token}/>
+							</Route>
+							<Route path="/addcustomobject">
+								<AddCustomObject setToken = {setToken} token = {token}/>
 							</Route>
 						</Switch>
 					</BrowserRouter>
