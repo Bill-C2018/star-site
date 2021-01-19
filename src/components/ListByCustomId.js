@@ -11,7 +11,7 @@ const ListByCustomId = (props) => {
 	console.log("passed in token = " + props.token)
 	const changeHandler = (event ) => {
 		console.log(event);
-		setGetByObjectIdUri("http://localhost:8081/userobject/userobject?objectId=" + event.target.value);
+		setGetByObjectIdUri("http://localhost:8081/userobject?objectId=" + event.target.value);
 		console.log(getByObjectIdUri);
 		setResponse([]);
 	}

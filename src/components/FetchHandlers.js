@@ -1,7 +1,6 @@
 
 	
 export const postCall = async (data,uri,token,isJson) => {
-	
 
 	let s2 = '';
 	if( isJson) {
@@ -38,6 +37,25 @@ export const getCallWithToken = async (token,uri) => {
 	};
 	
 	console.log("calling fetch -> " + requestOptions['headers']['Access-Token']);
+	const response = await fetch(uri,requestOptions);
+	if(response.status !== 200) {
+		console.log(response.status)
+		const text = response.status;
+		throw Error(text);
+	}
+	return response.json();
+	
+}
+
+export const deleteObjectCall = async (uri, token) => {
+
+	const requestOptions = {
+		method: 'DELETE',
+		headers: { 'Content-Type': 'application/json',
+						'Access-Token': token},
+
+	};
+
 	const response = await fetch(uri,requestOptions);
 	if(response.status !== 200) {
 		console.log(response.status)

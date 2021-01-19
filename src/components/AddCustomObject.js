@@ -23,7 +23,7 @@ class AddCustomObject extends Component {
 		let s = JSON.stringify(this.state);
 		console.log("in submit handler -> " + s)
 		try {
-			const response = await postCall(s,"http://localhost:8081//userobject/submitobject",this.props.token);
+			const response = await postCall(s,"http://localhost:8081//userobject",this.props.token);
 			console.log("response = " + response);
 			this.setState({response: response['objects']});
 		} catch (error)	{
