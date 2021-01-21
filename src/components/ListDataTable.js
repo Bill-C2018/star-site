@@ -45,6 +45,14 @@ class ListDataTable extends Component {
 					)})}
 			</tbody>
 			</table>
+			<div style={{textAlign: "right"}}>
+			<button
+			onClick = {() => { this.props.handlePrev()}}>
+			prev</button>
+			<button
+			onClick = { () => { this.props.handleNext()}}>
+			next</button>
+			</div>
 			</>
 
 			

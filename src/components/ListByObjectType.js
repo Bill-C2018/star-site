@@ -13,11 +13,34 @@ const ListByObjectType = (props) => {
 	const [response,setResponse] = useState([]);
 	const [isModalOpen, setModalOpen] = useState(false);
 	const [objectData, setObjectData] = useState([]);
+	const [currentPage,setCurrentPage] = useState(0);
+	const [totalPages, setTotalPages] = useState();
 	
-	console.log("passed in token = " + props.token)
+
+	const fetchData = async (uri) => {
+		
+		try {
+			const response = await getCallWithToken(props.token,uri);
+			console.log("response = " + response['objects']);
+			console.log("back from pagination #pages = " + response['totalPages'])
+			setResponse(response['objects']);
+			setTotalPages(response['totalPages']);
+			setCurrentPage(response['currentPage']);
+		} catch (error)	{
+
+			if (error.message === "403") {
+				console.log("clear token");
+				localStorage.clear();
+				props.setToken('');
+			}
+		}
+		
+	}
 	const changeHandler = (event ) => {
 		console.log(event);
-		setGetByObjectIdUri("http://localhost:8081/userobject/" + event.target.value);
+		setGetByObjectIdUri("http://localhost:8081/userobject/" 
+		+ event.target.value 
+		+ ":" + currentPage + ":5");
 		console.log(getByObjectIdUri);
 		setResponse([]);
 	}
@@ -27,8 +50,11 @@ const ListByObjectType = (props) => {
 		console.log("in submit handler -> " + props.token)
 		try {
 			const response = await getCallWithToken(props.token,getByObjectIdUri);
-			console.log("response = " + response);
+			console.log("response = " + response['objects']);
+			console.log("back from pagination #pages = " + response['totalPages'])
 			setResponse(response['objects']);
+			setTotalPages(response['totalPages']);
+			setCurrentPage(response['currentPage']);
 		} catch (error)	{
 
 			if (error.message === "403") {
@@ -40,7 +66,37 @@ const ListByObjectType = (props) => {
 	}
 //==========================================================
 //==========================================================
+	const handlePreviousClick = () => {
+		if(currentPage > 0) {
+			setCurrentPage(currentPage-1);
+			let newPage = parseInt(currentPage) - 1;
+			let newURI = "http://localhost:8081/userobject/" 
+			+ "Star" 
+			+ ":" + newPage + ":5";
+			
+			fetchData(newURI);
 
+		}
+		
+
+		
+	}
+	
+	const handleNextClick = async () => {
+		console.log("handl next click")
+		if(currentPage < totalPages) {
+			setCurrentPage(currentPage + 1);
+			let newPage = parseInt(currentPage) + 1;
+			let newURI = "http://localhost:8081/userobject/" 
+			+ "Star" 
+			+ ":" + newPage + ":5";
+			
+			fetchData(newURI);
+
+		}
+
+		
+	}
 	
 	const doSetModalOpen = (value) => {
 		setModalOpen(value);
@@ -120,7 +176,9 @@ const ListByObjectType = (props) => {
 							objectData = {objectData}/>
 			<ListDataTable  response={response}
 							clickHandler = {onClickHandler} 
-							editHandler = {onEditHandler}/>
+							editHandler = {onEditHandler}
+							handleNext = {handleNextClick}
+							handlePrev = {handlePreviousClick}/>
 		</div>
 	)
 }
