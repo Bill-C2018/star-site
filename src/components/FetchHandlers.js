@@ -4,12 +4,11 @@ export const postCall = async (data,uri,token,isJson) => {
 
 	let s2 = '';
 	if( isJson) {
-		console.log("is json == true");
 		s2 = JSON.stringify(data);
 	} else {
 		s2 = data;
 	}
-	console.log(s2);
+
 	const requestOptions = {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json',
@@ -26,8 +25,6 @@ export const postCall = async (data,uri,token,isJson) => {
 
 export const getCallWithToken = async (token,uri) => {
 	
-	console.log("get -> passed in token = " + token);
-	
 
 	const requestOptions = {
 		method: 'GET',
@@ -36,7 +33,6 @@ export const getCallWithToken = async (token,uri) => {
 
 	};
 	
-	console.log("calling fetch -> " + requestOptions['headers']['Access-Token']);
 	const response = await fetch(uri,requestOptions);
 	if(response.status !== 200) {
 		console.log(response.status)
@@ -58,7 +54,6 @@ export const deleteObjectCall = async (uri, token) => {
 
 	const response = await fetch(uri,requestOptions);
 	if(response.status !== 200) {
-		console.log(response.status)
 		const text = response.status;
 		throw Error(text);
 	}

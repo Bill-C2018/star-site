@@ -18,8 +18,6 @@ function App() {
 
 	
 	useEffect ( () => {
-		console.log("use effect");
-		console.log(token);
 		sessionStorage.setItem("localToken",token);
 
 	}, [token]);
@@ -39,12 +37,13 @@ function App() {
 			  <div className="column-side" style={{backgroundColor: "#aaa"}}>
 				<p><a style={{marginLeft: '10%'}} href="/customid">Custom ID</a></p>
 				<p><a style={{marginLeft: '10%'}} href="/objecttype">Object Type</a></p>
+				<p><a style={{marginLeft: '10%'}} href="/imagename">Image Name</a></p>
 				<p><a style={{marginLeft: '10%'}} href="/addcustomobject">Add Custom Object</a></p>		  
 				<p><a style={{marginLeft: '10%'}} href="/testdialog">Test page</a></p>		  
   
 			</div>
 			  
-			  <div className="column-middle" style={{backgroundColor: "#bbb"}}>
+			  <div className="column-middle" >
 	      			<BrowserRouter>
         				<Switch>
           					<Route path="/customid">
@@ -53,8 +52,16 @@ function App() {
 							<Route path="/objecttype">
 								<ListByObjectType 
 								setToken = {setToken} 
-								token = {token} />
+								token = {token} 
+								column = {"type:"}/>
 							</Route>
+							<Route path="/imageName">
+								<ListByObjectType 
+								setToken = {setToken} 
+								token = {token} 
+								column = {"imagename:"}/>
+							</Route>
+
 							<Route path="/addcustomobject">
 								<AddCustomObject setToken = {setToken} token = {token}/>
 							</Route>
