@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Star Site
+
+A react based front end for accessing data from the user objects project
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
