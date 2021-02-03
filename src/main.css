@@ -11,13 +11,15 @@ body {
   background-color: #f1f1f1;
   padding: 10px;
   text-align: center;
- 
+   flex-direction: column;
+   min-height: 20vh; 
 }
 
 /* Container for flexboxes */
 .row {
   display: -webkit-flex;
   display: flex;
+
 }
 
 /* Create three unequal columns that sits next to each other */
@@ -32,6 +34,16 @@ body {
    -ms-flex: 1;
    flex: 1;
    border-right: 2;
+   flex-direction: column;
+   min-height: 70vh;
+
+}
+
+.column-side-2 {
+   border-right: 2;
+   display: flex;
+   flex-direction: column;
+   min-height: 70vh;
 }
 
 /* Middle column */
@@ -48,6 +60,15 @@ body {
   background-color: #f1f1f1;
   padding: 10px;
   text-align: center;
+}
+
+.page-wrapper {
+	
+  display: flex;
+  
+  flex-direction: column;
+  min-height: 100vh;
+	
 }
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */

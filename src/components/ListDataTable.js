@@ -27,6 +27,7 @@ class ListDataTable extends Component {
 					<th style={{textAlign: "left"}}>Declination</th>
 					<th style={{textAlign: "left"}}>Catalogue Id</th>
 					<th style={{textAlign: "left"}}>Magnitude</th>
+					<th style={{textAlign: "left"}}>Magnitude Error</th>
 					<th style={{textAlign: "left"}}>FWHM</th>
 					<th style={{textAlign: "left"}}>Tools</th>
 				</tr>
@@ -42,6 +43,7 @@ class ListDataTable extends Component {
 						<td>{dt.declination}</td>
 						<td>{dt.otherCatalogueId}</td>
 						<td>{dt.magnitude}</td>
+						<td>{dt.magnitudeError}</td>
 						<td>{dt.fwhm}</td>
 						<td><button style={{width: "20", backgroundColor: 'lightgray'}} 
 							onClick={() => this.props.clickHandler(dt.myObjectId)}>Del</button>

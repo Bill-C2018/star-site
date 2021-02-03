@@ -29,12 +29,13 @@ function App() {
 	
 	return (
 		<>
+		<div className="page-wrapper" style={{backgroundColor: "#f1f1f1"}}>
 			<div className="header">
 			  <h2>Header</h2>
 			</div>
 			
 			<div className="row">
-			  <div className="column-side" style={{backgroundColor: "#aaa"}}>
+			  <div className="column-side" style={{backgroundColor: "#aaa", height: '80%'}}>
 				<p><a style={{marginLeft: '10%'}} href="/customid">Custom ID</a></p>
 				<p><a style={{marginLeft: '10%'}} href="/objecttype">Object Type</a></p>
 				<p><a style={{marginLeft: '10%'}} href="/imagename">Image Name</a></p>
@@ -71,13 +72,13 @@ function App() {
 						</Switch>
 					</BrowserRouter>
 			  </div>
-			  <div className="column-side" style={{backgroundColor: "#ccc"}}>Column</div>
+
 			</div>
 			
 			<div className="footer">
 			  <p>Footer</p>
 			</div>
-		
+		</div>
 		</>
 	);
 
